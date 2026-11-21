@@ -1,0 +1,39 @@
+@startuml
+
+skinparam roundcorner 20
+skinparam sequenceArrowThickness 1
+skinparam maxmessagesize 20
+skinparam ActorBorderColor #336699
+skinparam ParticipantPadding 20
+skinparam BoxPadding 10
+skinparam SequenceBoxBackgroundColor AliceBlue
+
+actor User #336699
+
+participant "RequestParser" as A #FFFFFF
+participant "TaskBundler" as B #FFFFFF
+
+box "EJB Container"
+participant "TaskExecutor" as C << (C,#ADD1B2) Testable >>
+end box
+
+User -> A: DoWork
+activate A
+
+A -> B: Create Request
+activate B #violet
+
+create C
+B -> C: DoWork
+activate C #PapayaWhip
+C --> B: WorkDone
+destroy C
+
+B --> A: Request Created
+deactivate B
+
+A --> User: Done
+deactivate A
+
+'!include ../../plantuml-styles/ae-copyright-footer.txt
+@enduml
