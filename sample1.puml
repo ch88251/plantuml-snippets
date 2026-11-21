@@ -13,7 +13,7 @@ actor User #336699
 participant "RequestParser" as A #FFFFFF
 participant "TaskBundler" as B #FFFFFF
 
-box "EJB Container"
+box "Some Business Domain"
 participant "TaskExecutor" as C << (C,#ADD1B2) Testable >>
 end box
 
